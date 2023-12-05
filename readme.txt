@@ -1,0 +1,4 @@
+-this project will handle simple crud operations for a product api
+-i will use express framework
+-mongodb will be used as the database
+-used layer architecture - router, controller, service, repository
