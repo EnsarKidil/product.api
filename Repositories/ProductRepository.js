@@ -9,21 +9,30 @@ class ProductRepository{
     }
 
     async GetAll(){
-        const products = await ProductModel.find();
+        const products = await ProductModel.find(); //empty filter means get all of the products
         return products;
     }
 
     async UpdateById(updatedProductData){
-        const updatedProduct = await ProductModel.findByIdAndUpdate(updatedProductData._id,updatedProductData);
+        const updatedProduct = await ProductModel.findByIdAndUpdate(updatedProductData._id,updatedProductData); //finds the product by the id and operate a full body update
         return updatedProduct;
     }
 
-    async GetById(id){
-        const product = await ProductModel.findById(id);
-        if(product == null){
-            throw new Error('Product with id ${id} not found');
-        }
+    async UpdateCategoryById(productId, category){
+        const updatedProduct = await ProductModel.updateOne( //finds the product with id and updates the category with mongodb's $set operator
+            {_id : productId},
+            {$set : {category : category} }
+        );
+        return updatedProduct;
+    }
 
+    async DeleteById(id){
+        const deletedProduct = await ProductModel.findByIdAndDelete(id); //finds the product with id and deletes
+        return deletedProduct;
+    }
+
+    async GetById(id){
+        const product = await ProductModel.findById(id); //finds the product with id, this is not created directly for a crud operation but to ensure single responsibility
         return product;
     }
 }
