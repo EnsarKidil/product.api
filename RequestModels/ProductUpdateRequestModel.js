@@ -1,28 +1,29 @@
-//This is the request model for creating a new product
+//This is the request model for full body update
 //This class includes a helper method that returns the database model for the product
 
-uuid = require('uuid');
 
-class ProductCreateRequestModel {
-    constructor({ title, description, price, category }) {
+
+class ProductUpdateRequestModel {
+    constructor({ id, title, description, price, category }) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.price = price;
         this.category = category;
     }
 
-    toDatabaseModel(){
+    toDatabaseModel(product){
         return {
-            _id : uuid.v4().toString(),
+            _id : this.id,
             title : this.title,
             description : this.description,
             price : this.price,
             category : this.category,
-            createdAt : Date.now(),
+            createdAt : product.createdAt,
             updatedAt : Date.now()
         };
     }
 
 }
 
-module.exports = ProductCreateRequestModel;
+module.exports = ProductUpdateRequestModel;

@@ -13,7 +13,7 @@ const productSchema = new mongoose.Schema({
     title : String,
     description : String,
     price : String,
-    catalog : String,
+    category : String,
     createdDate : {
         type : Date,
         default : Date.now()

@@ -7,5 +7,8 @@ const router = express.Router();
 const productController = require('../Controllers/ProductController');
 
 router.post('/create',productController.Create);
-
+router.get('/:id',productController.GetAll);
+router.put('/:id', productController.UpdateById);
+router.patch('/update-category/:_id', productController.UpdateCategoryById);
+router.delete('/:id', productController.DeleteById);
 module.exports = router;

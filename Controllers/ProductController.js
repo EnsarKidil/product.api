@@ -4,6 +4,7 @@
 //First of all, call service layer
 const productService = require('../Services/ProductService');
 const ProductCreateRequestModel = require('../RequestModels/ProductCreateRequestModel');
+const ProductUpdateRequestModel = require('../RequestModels/ProductUpdateRequestModel');
 
 class ProductController{
     //Create is the first function for the POST operation
@@ -20,6 +21,48 @@ class ProductController{
 
         catch (err){
             res.status(500).json(err);
+        }
+    }
+
+    async GetAll(req, res){
+        try{
+            const products = await productService.GetAll();
+            res.status(200).json(products);
+        }
+        catch (err){
+            res.status(501).json(err);
+        }
+    }
+
+    async UpdateById(req,res){
+        try {
+            const product = await productService.GetById(req.body.id);
+            const updateRequest = new ProductUpdateRequestModel(req.body);
+            const updatedProductData = updateRequest.toDatabaseModel(product);
+            const updatedProduct = await productService.UpdateById(updatedProductData);
+            res.status(200).json('Updated the product with id ${updatedProduct._id}');
+        }
+        catch (err){
+
+        }
+    }
+
+    async UpdateCategoryById(req, res){
+        try{
+
+
+        }
+        catch (err){
+
+        }
+    }
+
+    async DeleteById(req, res){
+        try{
+
+        }
+        catch (err){
+
         }
     }
 }
