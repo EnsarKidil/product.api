@@ -13,9 +13,48 @@ const productController = require('../Controllers/ProductController');
 //this is why we need to specify that method changes category
 //so, it is patch Product/update-category/{id}
 //finally, delete /Product/{id}
-router.post('/',productController.Create);
-router.get('/',productController.GetAll);
-router.put('/:id', productController.UpdateById);
-router.patch('/update-category/:_id', productController.UpdateCategoryById);
-router.delete('/:id', productController.DeleteById);
+router.post('/', async (req, res, next) => {
+    try{
+        await productController.Create(req, res);
+    }
+    catch (err){
+        next(err);
+    }
+});
+
+router.get('/', async (req, res, next) => {
+    try {
+        await productController.GetAll(req, res);
+    } catch (err) {
+        next(err);
+    }
+});
+
+router.put('/:id', async (req, res, next) => {
+    try{
+        await productController.UpdateById(req, res);
+    }
+    catch (err){
+        next(err);
+    }
+});
+
+router.patch('/update-category/:_id', async (req, res, next) => {
+    try {
+        await productController.UpdateCategoryById(req, res);
+    }
+    catch(err){
+        next(err);
+    }
+});
+
+router.delete('/:id', async (req, res, next) => {
+    try{
+        await productController.DeleteById(req, res);
+    }
+    catch(err){
+        next(err);
+    }
+});
+
 module.exports = router;
