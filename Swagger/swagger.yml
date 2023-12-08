@@ -1,0 +1,108 @@
+openapi: 3.0.0
+info:
+  title: Product API
+  version: 1.0.0
+paths:
+  /Product:
+    get:
+      description: Returns all products
+      responses:
+        '200':
+          description: Success
+        '500':
+          description: Internal Server Error
+    post:
+      description: Creates a new product
+      requestBody:
+        description: Product information
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductCreateRequestModel'
+      responses:
+        '201':
+          description: Created
+        '500':
+          description: Internal Server Error
+  '/Product/{id}':
+    put:
+      description: Operates a full body update by product id
+      requestBody:
+        description: Product information
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductUpdateRequestModel'
+      responses:
+        '200':
+          description: Success
+        '500':
+          description: Internal Server Error
+    patch:
+      description: Updates only the category of the product by id
+      requestBody:
+        description: Product information
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductUpdateCategoryRequestModel'
+      responses:
+        '200':
+          description: Success
+        '500':
+          description: Internal Server Error
+    delete:
+      description: Deletes the product by id
+      requestBody:
+        description: Category information
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductDeleteRequestModel'
+      responses:
+        '200':
+          description: Success
+        '500':
+          description: Internal Server Error
+components:
+  schemas:
+    ProductCreateRequestModel:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: string
+        category:
+          type: string
+    ProductUpdateRequestModel:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: string
+        category:
+          type: string
+    ProductUpdateCategoryRequestModel:
+      type: object
+      properties:
+        id:
+          type: string
+        category:
+          type: string
+    ProductDeleteRequestModel:
+      type: object
+      properties:
+        id:
+          type: string
