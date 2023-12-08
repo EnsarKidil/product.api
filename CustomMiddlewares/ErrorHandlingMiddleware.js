@@ -1,7 +1,7 @@
 // errorMiddleware.js
 
 function errorHandler(err, req, res, next) {
-    res.status(500).json({err});
+    res.status(err.statusCode).json(err.message);
 }
 
 module.exports = { errorHandler };

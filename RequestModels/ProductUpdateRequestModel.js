@@ -1,6 +1,7 @@
 //This is the request model for full body update
 //This class includes a helper method that returns the database model for the product
 
+
 class ProductUpdateRequestModel {
     constructor({ id, title, description, price, category }) {
         this.id = id;
@@ -18,7 +19,7 @@ class ProductUpdateRequestModel {
             price : this.price,
             category : this.category,
             createdAt : product.createdAt,
-            updatedAt : Date.now()
+            updatedAt : Date.now().toString()
         };
     }
 

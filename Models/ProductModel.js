@@ -16,11 +16,11 @@ const productSchema = new mongoose.Schema({
     category : String,
     createdDate : {
         type : Date,
-        default : Date.now()
+        default : Date.now().toString()
     },
     updatedDate : {
-        type : Date,
-        default: Date.now()
+        type : String,
+        default: Date.now().toString()
     }
 }, {versionKey: false })
 

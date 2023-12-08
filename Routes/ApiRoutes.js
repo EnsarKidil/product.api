@@ -13,6 +13,34 @@ const productController = require('../Controllers/ProductController');
 //this is why we need to specify that method changes category
 //so, it is patch Product/update-category/{id}
 //finally, delete /Product/{id}
+
+/**
+ * @swagger
+ * /Product:
+ *   post:
+ *     description: Creates a new product
+ *     requestBody:
+ *       description: Product information
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               price:
+ *                 type: string
+ *               category:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Created
+ *       500:
+ *         description: Internal Server Error
+ */
 router.post('/', async (req, res, next) => {
     try{
         await productController.Create(req, res);
@@ -22,6 +50,17 @@ router.post('/', async (req, res, next) => {
     }
 });
 
+/**
+ * @swagger
+ * /Product:
+ *   get:
+ *     description: Returns all products
+ *     responses:
+ *       200:
+ *         description: Success
+ *       500:
+ *         description: Internal Server Error
+ */
 router.get('/', async (req, res, next) => {
     try {
         await productController.GetAll(req, res);
@@ -29,7 +68,33 @@ router.get('/', async (req, res, next) => {
         next(err);
     }
 });
-
+/**
+ * @swagger
+ * /Product/{id}:
+ *   put:
+ *     description: Operates a full body update by product id
+ *     requestBody:
+ *       description: Product information
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               price:
+ *                 type: string
+ *               category:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Success
+ *       500:
+ *         description: Internal Server Error
+ */
 router.put('/:id', async (req, res, next) => {
     try{
         await productController.UpdateById(req, res);
@@ -39,6 +104,27 @@ router.put('/:id', async (req, res, next) => {
     }
 });
 
+/**
+ * @swagger
+ * /Product/category-update/{id}:
+ *   patch:
+ *     description: Updates only the category of the product by id
+ *     requestBody:
+ *       description: Category information
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               category:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Success
+ *       500:
+ *         description: Internal Server Error
+ */
 router.patch('/update-category/:_id', async (req, res, next) => {
     try {
         await productController.UpdateCategoryById(req, res);
@@ -48,6 +134,27 @@ router.patch('/update-category/:_id', async (req, res, next) => {
     }
 });
 
+/**
+ * @swagger
+ * /Product/{id}:
+ *   delete:
+ *     description: Deletes the product by id
+ *     requestBody:
+ *       description: Category information
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Success
+ *       500:
+ *         description: Internal Server Error
+ */
 router.delete('/:id', async (req, res, next) => {
     try{
         await productController.DeleteById(req, res);

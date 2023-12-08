@@ -18,8 +18,8 @@ class ProductCreateRequestModel {
             description : this.description,
             price : this.price,
             category : this.category,
-            createdAt : Date.now(),
-            updatedAt : Date.now()
+            createdAt : Date.now().toString(),
+            updatedAt : Date.now().toString()
         };
     }
 
