@@ -18,8 +18,9 @@ class ProductController{
     }
 
     //this is the GetAll method, it gets all the products in the database
-    async GetAll(req, res){
-        const products = await productService.GetAll();
+    async GetByFilters(req, res){
+        const {title, category} = req.query;
+        const products = await productService.GetByFilters(title, category);
         res.status(200).json(products);
     }
 

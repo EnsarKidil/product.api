@@ -6,6 +6,17 @@ paths:
   /Product/v1:
     get:
       description: Returns all products
+      parameters:
+        - name: title
+          in: query
+          description: Filter by product name
+          schema:
+            type: string
+        - name: category
+          in: query
+          description: Filter by product category
+          schema:
+            type: string
       responses:
         '200':
           description: Success

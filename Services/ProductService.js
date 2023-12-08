@@ -8,8 +8,8 @@ class ProductService{
         return await productRepository.Create(productData);
     }
 
-    async GetAll(){
-        return await productRepository.GetAll();
+    async GetByFilters(title, category){
+        return await productRepository.GetByFilters(title, category);
     }
 
     async UpdateById(updatedProductData){

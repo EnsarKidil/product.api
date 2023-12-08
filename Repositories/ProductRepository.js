@@ -10,8 +10,16 @@ class ProductRepository{
         return await product.save(); //product.save will insert a new object to the database
     }
 
-    async GetAll(){
-        const products = await ProductModel.find(); //empty filter means get all of the products
+    async GetByFilters(title, category){
+        const filters = {} //contains the filters
+        if(title){
+            filters.title = {$regex: title, $options: 'i'};
+        }
+        if(category){
+            filters.category = {$regex: category, $options: 'i'};
+        }
+
+        const products = await ProductModel.find(filters); //gets the products that matches the filters
         if(!products){
             throw new ProductsNotFound("Products Not Found!")
         }

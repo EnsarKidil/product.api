@@ -6,13 +6,13 @@ const router = express.Router();
 //First of all, call the controller layer which is the next layer
 const productController = require('../Controllers/ProductController');
 
-//our api is a product api, this is why our initial ep is /Product
-//since we have only a post and only a get method, they are only: get /Product, post /Product
-//we have a put method which is: put /Product/{id}
+//our api is a product api, this is why our initial ep is /Product/v1
+//since we have only a post and only a get method, they are only: get /Product/v1, post /Product/v1
+//we have a put method which is: put /Product/v1/{id}
 //we have a patch method that only updates the category of the product.
 //this is why we need to specify that method changes category
-//so, it is patch Product/update-category/{id}
-//finally, delete /Product/{id}
+//so, it is patch Product/v1/update-category/{id}
+//finally, delete /Product/v1/{id}
 
 router.post('/', async (req, res, next) => {
     try{
@@ -25,7 +25,7 @@ router.post('/', async (req, res, next) => {
 
 router.get('/', async (req, res, next) => {
     try {
-        await productController.GetAll(req, res);
+        await productController.GetByFilters(req, res);
     } catch (err) {
         next(err);
     }
