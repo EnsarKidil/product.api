@@ -28,6 +28,13 @@ paths:
   '/Product/{id}':
     put:
       description: Operates a full body update by product id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the product
+          schema:
+            type: string
       requestBody:
         description: Product information
         required: true
@@ -40,22 +47,15 @@ paths:
           description: Success
         '500':
           description: Internal Server Error
-    patch:
-      description: Updates only the category of the product by id
-      requestBody:
-        description: Product information
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ProductUpdateCategoryRequestModel'
-      responses:
-        '200':
-          description: Success
-        '500':
-          description: Internal Server Error
     delete:
       description: Deletes the product by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the product
+          schema:
+            type: string
       requestBody:
         description: Category information
         required: true
@@ -63,6 +63,28 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ProductDeleteRequestModel'
+      responses:
+        '200':
+          description: Success
+        '500':
+          description: Internal Server Error
+  '/Product/category-update/{id}':
+    patch:
+      description: Updates only the category of the product by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the product
+          schema:
+            type: string
+      requestBody:
+        description: Product information
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductUpdateCategoryRequestModel'
       responses:
         '200':
           description: Success
