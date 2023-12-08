@@ -2,7 +2,7 @@
 //This class contains the required functions for the CRUD operations
 
 //First of all, call service layer
-const productService = require('../Services/ProductService');
+const productService = require('../../Services/ProductService');
 const ProductCreateRequestModel = require('../RequestModels/ProductCreateRequestModel');
 const ProductUpdateRequestModel = require('../RequestModels/ProductUpdateRequestModel');
 

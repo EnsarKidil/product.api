@@ -3,7 +3,7 @@ info:
   title: Product API
   version: 1.0.0
 paths:
-  /Product:
+  /Product/v1:
     get:
       description: Returns all products
       responses:
@@ -25,7 +25,7 @@ paths:
           description: Created
         '500':
           description: Internal Server Error
-  '/Product/{id}':
+  '/Product/v1/{id}':
     put:
       description: Operates a full body update by product id
       parameters:
@@ -68,7 +68,7 @@ paths:
           description: Success
         '500':
           description: Internal Server Error
-  '/Product/category-update/{id}':
+  '/Product/v1/category-update/{id}':
     patch:
       description: Updates only the category of the product by id
       parameters:
